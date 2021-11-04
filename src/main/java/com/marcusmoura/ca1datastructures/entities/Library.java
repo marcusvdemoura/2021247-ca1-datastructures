@@ -31,7 +31,7 @@ public class Library {
     }
 
 
-    public static void getDataFromFiles(){
+    public static void fetchDataFromFiles(){
 
         Variables.BOOKS_BORROWED.clear();
         Variables.BOOK_LIST.clear();

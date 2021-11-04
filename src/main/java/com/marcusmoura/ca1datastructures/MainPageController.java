@@ -229,7 +229,7 @@ public class MainPageController implements Initializable {
         } else if (parameter.equalsIgnoreCase("By title")) {
             for (Book book : Variables.BOOK_LIST) {
 
-                if (argument.contentEquals(book.getBookTitle())) {
+                if (argument.equalsIgnoreCase(book.getBookTitle())) {
                     BooksMaster booksMaster = new BooksMaster();
                     booksMaster.setId(book.getId());
                     booksMaster.setAuthorName(book.getAuthorFirstName() + " " + book.getAuthorLastName());
@@ -369,7 +369,7 @@ public class MainPageController implements Initializable {
         for (Map.Entry<String, Integer> entry : Variables.BOOKS_BORROWED.entrySet()) {
             if (entry.getValue() == argument) {
                 for (Book book : Variables.BOOK_LIST) {
-                    if (book.getId().contentEquals(entry.getKey())) {
+                    if (book.getId().equalsIgnoreCase(entry.getKey())) {
                         BooksMaster booksMaster = new BooksMaster();
                         booksMaster.setId(book.getId());
                         booksMaster.setAuthorName(book.getAuthorFirstName() + " " + book.getAuthorLastName());
