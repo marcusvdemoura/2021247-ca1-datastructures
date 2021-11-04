@@ -503,16 +503,27 @@ public class MainPageController implements Initializable {
                     if (result.get() == ButtonType.OK){
                         Client client = getClient(clientID);
                         if(client!=null){
-                            // add the client to the books queue
+
+                            // add the client to the books queue files
+
+                            String a[] = {book.getId(), client.getId().toString()};
+                            Variables.FULL_WAITING_LIST.add(a);
+                            System.out.println("Printing to test withing the adding to queue");
+
                             book.getWaitingList().queueEnqueue(client);
+                            WriteToFile writeToFile = new WriteToFile("waiting list");
+
+                            for(String[]x: Variables.FULL_WAITING_LIST){
+                               writeToFile.writeWaiting(x[0], Integer.parseInt(x[1]));
+                             }
+
+
 
                             // alert informing the user the client has been added to the books queue
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("");
                             alert1.setHeaderText("Client added to " + book.getBookTitle()+" waiting list");
                             alert1.show();
-
-
 
                         }
 

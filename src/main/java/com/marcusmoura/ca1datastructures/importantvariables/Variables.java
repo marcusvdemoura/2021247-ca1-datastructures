@@ -23,4 +23,5 @@ public class Variables {
     public static final List<Client> CLIENT_LIST = new ArrayList<>();
     public static final List<Book> BOOK_LIST = new ArrayList<>();
     public static final Map<String, Integer> BOOKS_BORROWED = new HashMap<>();
+    public static final List<String[]> FULL_WAITING_LIST = new ArrayList<>();
 }

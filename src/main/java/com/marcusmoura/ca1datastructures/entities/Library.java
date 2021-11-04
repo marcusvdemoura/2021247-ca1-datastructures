@@ -36,6 +36,7 @@ public class Library {
         Variables.BOOKS_BORROWED.clear();
         Variables.BOOK_LIST.clear();
         Variables.CLIENT_LIST.clear();
+        Variables.FULL_WAITING_LIST.clear();
 
         for (String[] x: rf.getLines(Variables.LIST_CLIENTS)){
             Variables.CLIENT_LIST.add(new Client(Integer.parseInt(x[0]), x[1],x[2],x[3]));
@@ -66,14 +67,18 @@ public class Library {
             }
         }
 
+        // GETTING DATA FROM LIST
+
         for (String[] x: rf.getLines(Variables.LIST_WAITING)){
+
             Book book=null;
             Client client=null;
+
+            //get client and book according to data in the list
             for (Client c :
                     Variables.CLIENT_LIST) {
                 if (c.getId()==Integer.parseInt(x[1])){
                     client=c;
-                    return;
                 }
             }
             for(Book b: Variables.BOOK_LIST){
@@ -82,11 +87,16 @@ public class Library {
                 }
             }
 
+
             if(book==null){
                 System.out.println("Nothing to be done. Book is null");
             } else if (client==null){
                 System.out.println("Nothing to be done. Client is null");
             } else if(book!=null && client != null) {
+
+                String a[] = {book.getId(), client.getId().toString()};
+                Variables.FULL_WAITING_LIST.add(a);
+
                 book.getWaitingList().queueEnqueue(client);
             } else{
                 System.out.println("Something is wrong here!");
